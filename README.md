@@ -1,21 +1,22 @@
 # link-shortener-development
 To accurately outline the scope of work required for a project, it is crucial to first identify itsobjectives. Pinpointing what the project hopes to accomplish will assist in determining itsinclusions and limitations.
 Here's a basic implementation of a URL shortener in Java:
+Here's a simple implementation of a Link Shortener in Java:
 
 
-URLShortener.java
+LinkShortener.java
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class URLShortener {
+public class LinkShortener {
     private Map<String, String> longToShort;
     private Map<String, String> shortToLong;
     private Random random;
     private String domain;
 
-    public URLShortener(String domain) {
+    public LinkShortener(String domain) {
         this.domain = domain;
         longToShort = new HashMap<>();
         shortToLong = new HashMap<>();
@@ -76,13 +77,16 @@ public class URLShortener {
 
 
 
-CLI Interface
+CLI Interface:
+
+
+LinkShortenerCLI.java
 
 import java.util.Scanner;
 
-public class URLShortenerCLI {
+public class LinkShortenerCLI {
     public static void main(String[] args) {
-        URLShortener shortener = new URLShortener("(link unavailable)");
+        LinkShortener shortener = new LinkShortener("(link unavailable)");
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -118,7 +122,10 @@ public class URLShortenerCLI {
 
 
 
-Web Interface (using Spring Boot)
+Web Interface (using Spring Boot):
+
+
+LinkShortenerWeb.java
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -129,11 +136,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class URLShortenerWeb {
-    private URLShortener shortener;
+public class LinkShortenerWeb {
+    private LinkShortener shortener;
 
-    public URLShortenerWeb() {
-        shortener = new URLShortener("(link unavailable)");
+    public LinkShortenerWeb() {
+        shortener = new LinkShortener("(link unavailable)");
     }
 
     @GetMapping("/shorten")
@@ -147,8 +154,13 @@ public class URLShortenerWeb {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(URLShortenerWeb.class, args);
+        SpringApplication.run(LinkShortenerWeb.class, args);
     }
 }
 
 
+
+
+
+
+  
